@@ -1,4 +1,3 @@
-//package twoClient;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -29,15 +28,14 @@ public class Rfc865UdpClient {
 	    { 
 	        Scanner sc = new Scanner(System.in); 
 	  
-	        // Step 1:Create the socket object for 
-	        // carrying the data. 
+	        // Step 1:Create the socket object for carrying the data. 
 	        DatagramSocket ds = new DatagramSocket(); 
 	  
 	        InetAddress ip = InetAddress.getLocalHost(); 
 	        byte bufsend[] = new byte[65535];
 	        byte bufreceive[] = new byte [65535];
 	  
-	        // loop while user not enters "bye" 
+	        // if u wanna quit the roop, u should write some extra instruction. In this case, you only need to close the console.
 	        while (true) 
 	        { 
 	            String inp = sc.nextLine(); 
@@ -45,13 +43,10 @@ public class Rfc865UdpClient {
 	            // convert the String input into the byte array. 
 	            bufsend = inp.getBytes(); 
 	  
-	            // Step 2 : Create the datagramPacket for sending 
-	            // the data. 
-	            DatagramPacket DpSend = 
-	                  new DatagramPacket(bufsend, bufsend.length, ip, 17); 
+	            // Step 2 : Create the datagramPacket for sending the data. 
+	            DatagramPacket DpSend = new DatagramPacket(bufsend, bufsend.length, ip, 17); 
 	  
-	            // Step 3 : invoke the send call to actually send 
-	            // the data. 
+	            // Step 3 : invoke the send call to actually send the data. 
 	            ds.send(DpSend); 
 	  
 	            //Step 4: receive the server's feedback
@@ -63,9 +58,6 @@ public class Rfc865UdpClient {
 	            //using data() change byte into string and print out
 	            System.out.println("server:-"+data(bufreceive));
 	            
-	       /*     // break the loop if user enters "bye" 
-	            if (inp.equals("bye")) 
-	                break; */
 	        } 
 	    } 
 	 
